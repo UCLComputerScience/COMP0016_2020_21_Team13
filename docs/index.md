@@ -1,4 +1,4 @@
-## Welcome
+## Home
 
 Have fun dancing with friends and families.
 
@@ -27,11 +27,23 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Instructions
+### Requirements
 
 Follow the moves shown on the screen.
 You will get higher points for similar moves.
 
-### Support or Contact
+### Research
+
+### Algorithms
+
+### UI Design
+
+### System Design
+
+### Testing
+
+### Evaluation
+
+### Appendices
 
 If something goes wrong, please contact xxxxxxxx or email xxxxxxxxx.
