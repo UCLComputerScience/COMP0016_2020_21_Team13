@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import time
 
-cap = cv2.VideoCapture('/home/lilly/dancegame/【溟雨】性感在可爱面前一文不值！thumbs up！超可爱旗袍竖屏蹦迪.mp4')
+cap = cv2.VideoCapture(0)
 nImage = 0
 startTime = time.time()
 
