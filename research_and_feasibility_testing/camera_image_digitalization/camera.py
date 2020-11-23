@@ -3,6 +3,8 @@ import numpy as np
 import time
 
 cap = cv2.VideoCapture(0)
+cap.set(3, 640)
+cap.set(4, 480)
 nImage = 0
 startTime = time.time()
 
@@ -13,9 +15,11 @@ while(True):
     if k == ord("q"):
         break;
     # take a picture every 2 seconds (better change to every move)
-    if time.time()-startTime >= 2:
+    if time.time()-startTime >= 60:
         imgName = "Image{}.png".format(nImage)
         cv2.imwrite(imgName, frame)
+        print("picture formed")
+        startTime = time.time()
         #cv2.findcontour()
     nImage += 1
     
