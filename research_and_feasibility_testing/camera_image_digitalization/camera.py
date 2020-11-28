@@ -14,14 +14,17 @@ while(True):
     k = cv2.waitKey(1) & 0xFF
     if k == ord("q"):
         break;
-    # take a picture every 2 seconds (better change to every move)
-    if time.time()-startTime >= 60:
+    # take a picture every 60 seconds (better change to every move)
+    if ret and time.time()-startTime >= 60:
         imgName = "Image{}.png".format(nImage)
         cv2.imwrite(imgName, frame)
-        print("picture formed")
+        print("picture{} formed".format(nImage))
+        a = np.asarray(frame)
+        print(a)
+        #print(type(a))
+        #print(a.shape)
         startTime = time.time()
-        #cv2.findcontour()
-    nImage += 1
+        nImage += 1
     
 
 cap.release()
