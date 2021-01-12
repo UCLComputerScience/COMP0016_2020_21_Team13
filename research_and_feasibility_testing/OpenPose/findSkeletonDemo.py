@@ -2,8 +2,11 @@ import skeletonRecognitionUtils as skltnUtil
 import numpy as np
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
+from PIL import Image
+import resizeImage 
 import math
 import os
+from numpy import asarray
 
 def getAllImages(dirName):
     currentFolderName = os.path.dirname(os.path.abspath(__file__))
@@ -14,7 +17,11 @@ def getAllImages(dirName):
     originFrames=[]
     skeletonFrames=[]
     for fileName in fileNames:
-        frame = mpimg.imread(fileName)
+        frame = Image.open(fileName)
+        skeleton = frame.copy()
+        if skeleton.size != (513,513):
+            skeleton = resizeImage.resizeImage(frame)
+        frame = asarray(frame)
         originFrames.append(frame)
         skeletonFrame = skltnUtil.findSkeleton(frame)
         skeletonFrames.append(skeletonFrame)
