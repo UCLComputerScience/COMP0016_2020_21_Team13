@@ -1,14 +1,22 @@
 ## Home
 
-Have fun dancing with friends and families.
+ArthurMurray Dance Performance Game
 
 
-### Introduction
+### Introduction(abstract)
 
-This is a multi-player game...
+Problem statement
+— Your solution
+— Achievement and impact
 
 ```markdown
 Syntax highlighted code block
+
+### video
+
+### The development team
+
+### Project management
 
 # Header 1
 ## Header 2
@@ -46,4 +54,5 @@ You will get higher points for similar moves.
 
 ### Appendices
 
-If something goes wrong, please contact xxxxxxxx or email xxxxxxxxx.
+### Development Blog
+
