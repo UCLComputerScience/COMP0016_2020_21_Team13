@@ -5,12 +5,12 @@ ArthurMurray Dance Performance Game
 
 ### Introduction(abstract)
 
-Problem statement
-— Your solution
-— Achievement and impact
-
-```markdown
-Syntax highlighted code block
+#Problem statement
+develop a video game that helps inexperienced dancers to learn dancing. 
+# Your solution
+Use webcam to take pictures of the user dancing every interval. Find the skeleton in each pictures and match them with an example one. 
+# Achievement and impact
+Finding the skeleton.
 
 ### video
 
@@ -31,7 +31,6 @@ Syntax highlighted code block
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
-```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
