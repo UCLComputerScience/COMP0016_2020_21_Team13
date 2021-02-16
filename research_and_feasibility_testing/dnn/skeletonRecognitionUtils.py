@@ -19,7 +19,7 @@ def findSkeleton(f):
     H = output.shape[2]
     W = output.shape[3]
     points = []
-    for i in range(15):
+    for i in range(44):
         probMap = output[0, i, :, :]
         minVal, prob, minLoc, point = cv2.minMaxLoc(probMap)
         x = (inWidth * point[0]) / W

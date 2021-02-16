@@ -18,10 +18,9 @@ def getAllImages(dirName):
     skeletonFrames=[]
     for fileName in fileNames:
         frame = Image.open(fileName)
-        skeleton = frame.copy()
-        if skeleton.size != (513,513):
-            skeleton = resizeImage.resizeImage(frame)
-        frame = asarray(frame)
+        if frame.size != (513,513):
+            frame = resizeImage.resizeImage(frame)
+        print(frame.shape)
         originFrames.append(frame)
         skeletonFrame = skltnUtil.findSkeleton(frame)
         skeletonFrames.append(skeletonFrame)
