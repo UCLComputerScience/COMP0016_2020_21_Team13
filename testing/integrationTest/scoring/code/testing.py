@@ -5,8 +5,8 @@ import math
 import matplotlib.pyplot as plt
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path + r'/../../../../');
-from openposeAPI import API
+sys.path.append(dir_path + r'/../../../../openposeAPI');
+from api import scoreANDskele
 
 def picturesToBeProcessed(dirName):
     currentFolderName = os.path.dirname(os.path.abspath(__file__))
@@ -49,7 +49,7 @@ for f in folderList:
     datumList=[]
     print(f)
     fileNames = picturesToBeProcessed(f)
-    result,canvas = api.scoreANDskele(fileNames[0],fileNames[1])
+    result,canvas = scoreANDskele(fileNames[0],fileNames[1])
     score.append(result)
     combinedSkeleton.append(canvas)
 

@@ -4,8 +4,8 @@ import cv2
 import os
 from sys import platform
 import argparse
-from displayHelper import *
-from scoringHelper import *
+import displayHelper
+import scoringHelper
 
 #TODO:
 # refactoring code
@@ -74,44 +74,44 @@ def processImage(image_dir):
 # API functions
 def draw_skeleton(img_dir,bool):
     datum = processImage(img_dir)
-    array = keypointsTuple(datum.poseKeypoints)
-    width, height = getSize(datum.cvOutputData.shape)
-    canvas = init_canvas(height,width)
+    array = displayHelper.keypointsTuple(datum.poseKeypoints)
+    width, height = displayHelper.getSize(datum.cvOutputData.shape)
+    canvas = displayHelper.init_canvas(height,width)
     if(bool == False):
-        canvas = kponly(canvas,array)
-        displayImage("keypoints of the skeleton",canvas)
+        canvas = displayHelper.kponly(canvas,array)
+        displayHelper.displayImage("keypoints of the skeleton",canvas)
     else:
-        canvas = kponly(canvas,array)
-        canvas = addingLine(canvas, array)
-        displayImage("keypoints of the skeleton",canvas)
+        canvas = displayHelper.kponly(canvas,array)
+        canvas = displayHelper.addingLine(canvas, array)
+        displayHelper.displayImage("keypoints of the skeleton",canvas)
 
 def DisplayImageWithSkeleton(img_dir):
     datum = processImage(img_dir)
-    displayImage("Image with skeleton added to the input picture",datum.cvOutputData)
+    displayHelper.displayImage("Image with skeleton added to the input picture",datum.cvOutputData)
 
 def Keypoints(img_dir,bool):
     datum = processImage(img_dir)
     if(bool == True):
-        return keypointsTuple(datum.poseKeypoints)
+        return displayHelper.keypointsTuple(datum.poseKeypoints)
     else:
-        return keypointsArray(datum.poseKeypoints)
+        return scoringHelper.keypointsArray(datum.poseKeypoints)
 
 def twoSkeleton(model_datum,input_datum):
     # model_datum = processImage(model_dir)
     # input_datum = processImage(input_dir)
-    return combineSkele(model_datum,input_datum)
+    return displayHelper.combineSkele(model_datum,input_datum)
 
 
 def Scoring(model_datum,input_datum):
     # model_datum = processImage(model_dir)
     # input_datum = processImage(input_dir)
-    return final_score(model_datum,input_datum)
+    return scoringHelper.final_score(model_datum,input_datum)
 
 def scoreANDskele(model_dir,input_dir):
     model_datum = processImage(model_dir)
     input_datum = processImage(input_dir)    
-    score = final_score(model_datum,input_datum)
-    canvas = combineSkele(model_datum,input_datum)
+    score = scoringHelper.final_score(model_datum,input_datum)
+    canvas = displayHelper.combineSkele(model_datum,input_datum)
     return score,canvas
 
 
