@@ -51,7 +51,7 @@ def _setup(image_dir):
                 if key not in params: params[key] = next_item
         return args,params
 
-def _processImage(image_dir):
+def processImage(image_dir):
     # import image and model
     args,params = _setup(image_dir)
     # Starting OpenPose
@@ -73,7 +73,7 @@ def _processImage(image_dir):
 
 # API functions
 def draw_skeleton(img_dir,bool):
-    datum = _processImage(img_dir)
+    datum = processImage(img_dir)
     array = keypointsTuple(datum.poseKeypoints)
     width, height = getSize(datum.cvOutputData.shape)
     canvas = init_canvas(height,width)
@@ -86,17 +86,79 @@ def draw_skeleton(img_dir,bool):
         displayImage("keypoints of the skeleton",canvas)
 
 def DisplayImageWithSkeleton(img_dir):
-    datum = _processImage(img_dir)
+    datum = processImage(img_dir)
     displayImage("Image with skeleton added to the input picture",datum.cvOutputData)
 
 def Keypoints(img_dir,bool):
-    datum = _processImage(img_dir)
+    datum = processImage(img_dir)
     if(bool == True):
         return keypointsTuple(datum.poseKeypoints)
     else:
         return keypointsArray(datum.poseKeypoints)
 
-def Scoring(model_dir,input_dir):
-    model_datum = _processImage(model_dir)
-    input_datum = _processImage(input_dir)
+def twoSkeleton(model_datum,input_datum):
+    # model_datum = processImage(model_dir)
+    # input_datum = processImage(input_dir)
+    return combineSkele(model_datum,input_datum)
+
+
+def Scoring(model_datum,input_datum):
+    # model_datum = processImage(model_dir)
+    # input_datum = processImage(input_dir)
     return final_score(model_datum,input_datum)
+
+def scoreANDskele(model_dir,input_dir):
+    model_datum = processImage(model_dir)
+    input_datum = processImage(input_dir)    
+    score = final_score(model_datum,input_datum)
+    canvas = combineSkele(model_datum,input_datum)
+    return score,canvas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Unused
+# def afterTransformed(model_dir,input_dir):
+    # modelDatum = _processImage(model_dir)
+    # inputDatum = _processImage(input_dir)
+    # keypointMod = np.array(keypointsArray(modelDatum.poseKeypoints))
+    # keypointInp = np.array(keypointsArray(inputDatum.poseKeypoints))
+    # result = input_transform(keypointMod,keypointInp)
+    # # print(result)
+    # width, height = getSize(modelDatum.cvOutputData.shape)
+    # canvas = init_canvas(height,width)
+    # canvas = kponly(canvas,keypointMod)
+    # canvas = addingLine(canvas,keypointMod)
+    # canvas = kponly(canvas,keypointInp)
+    # canvas = addingLine(canvas,keypointInp,[122,122,122])
+    # canvas = kponly(canvas,result)
+    # canvas = addingLine(canvas,result)
+    # canvas = kponly(canvas,keypointMod)
+    # canvas = addingLine(canvas,keypointMod,[122,122,122])
+    # displayImage("skeleton after tansformation",canvas)

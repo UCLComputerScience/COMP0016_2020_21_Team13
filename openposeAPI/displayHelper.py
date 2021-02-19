@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from DirectPath import PartPairs
+import os
 #Canvas helper function
 
 # create canvas
@@ -30,7 +31,26 @@ def displayImage(string,canvas):
     cv2.imshow(string, canvas)
     cv2.waitKey(0)
 
+def picturesToBeProcessed(dirName):
+    currentFolderName = os.path.dirname(os.path.abspath(__file__))
+    imageFolderName = os.path.join(currentFolderName, dirName)
+    try:
+        if os.path.isdir(imageFolderName):
+            fileNames = [f.path for f in os.scandir(imageFolderName)
+                    if f.is_file() and f.path.endswith(('.png','.jpg'))
+                ]
+    except Exception as e:
+        print(dirName , " does not exits")
+    if len(fileNames)>2:
+        print("too many pictures in a single file")
+        return
+    return fileNames
 
+def dirList():
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    path = dir_path + r'/../testing/integrationTest/scoring/data'
+    folderName = [f.path for f in os.scandir(path) if f.is_dir]
+    return folderName
 
 # Processing Canvas
 # Drawing circles as keypoints onto a canvas
@@ -47,7 +67,7 @@ def kponly(canvas, datum):
     return canvas
 
 # Drawing lines between keypoints onto a canvas can be array or datum
-def addingLine(canvas,datum):
+def addingLine(canvas,datum,color=[0,0,0]):
     try:
         kp = keypointsTuple(datum.poseKeypoints)
     except Exception as error:
@@ -58,8 +78,22 @@ def addingLine(canvas,datum):
         p1 = PartPairs[i][0]
         p2 = PartPairs[i][1]
         # print(kp[p1],kp[p2])
-        if kp[p1] ==(0.0,0.0) or kp[p2]==(0.0,0.0):
+        point1 = (int(kp[p1][0]),int(kp[p1][1]))
+        point2 = (int(kp[p2][0]),int(kp[p2][1]))
+        if point1 ==(0.0,0.0) or point2==(0.0,0.0):
             continue
-        cv2.line(canvas,kp[p1],kp[p2],[65,105,225],3)
+        cv2.line(canvas,point1,point2,color,3)
     return canvas
 
+# combine two skeleton together
+def combineSkele(datumMod, datumInp):
+    keypointMod = keypointsTuple(datumMod.poseKeypoints)
+    keypointInp = keypointsTuple(datumInp.poseKeypoints)
+    # print(result)
+    width, height = getSize(datumMod.cvOutputData.shape)
+    canvas = init_canvas(height,width)
+    canvas = kponly(canvas,keypointMod)
+    canvas = addingLine(canvas,keypointMod)
+    canvas = kponly(canvas,keypointInp)
+    canvas = addingLine(canvas,keypointInp,[122,122,122])
+    return canvas

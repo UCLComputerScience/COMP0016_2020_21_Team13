@@ -63,8 +63,26 @@ def cosSim(Mod_datum,Input_datum):
         result.append(res)
     return average(result)
 
+def input_transform(model_features,input_features): #x as the keep points of the input image and y as the model image
+    # see details at https://becominghuman.ai/single-pose-comparison-a-fun-application-using-human-pose-estimation-part-2-4fd16a8bf0d3
+    pad = lambda x : np.hstack([x, np.ones((x.shape[0],1))])
+    unpad = lambda x : x[:,:-1]
+
+    Y = pad(model_features)
+    X = pad(input_features)
+
+    A, res, rank, s = np.linalg.lstsq(X,Y)
+    A[np.abs(A) < 1e-10] = 0  # set really small values to zero
+    transform = lambda x : unpad(np.dot(pad(x),A))
+    input_transform = transform(input_features)
+    return input_transform
+
 def score_cosSim(similarity):
-    return 0.5*math.pow((1-similarity)*100,2)
+    score = 0.5*math.pow((1-similarity)*100,2)
+    if score > 90:
+        return 90
+    return round(score,2)
+    
 
 def final_score(Mod_datum,Input_datum):
     similarity = cosSim(Mod_datum,Input_datum)
