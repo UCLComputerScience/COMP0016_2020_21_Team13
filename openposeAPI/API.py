@@ -96,9 +96,9 @@ def Keypoints(img_dir,bool):
     else:
         return scoringHelper.keypointsArray(datum.poseKeypoints)
 
-def twoSkeleton(model_datum,input_datum):
-    # model_datum = processImage(model_dir)
-    # input_datum = processImage(input_dir)
+def twoSkeleton(model_dir,input_dir):
+    model_datum = processImage(model_dir)
+    input_datum = processImage(input_dir)
     return displayHelper.combineSkele(model_datum,input_datum)
 
 

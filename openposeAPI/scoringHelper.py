@@ -18,10 +18,11 @@ def cosine_similarity(x, y, norm=False):
     zero_list = np.array([0] * len(x))
     if x.all() == zero_list.all() or y.all() == zero_list.all():
         return float(1) if x.all() == y.all() else float(0)
-
-    # method 1
     res = np.array([[x[i] * y[i], x[i] * x[i], y[i] * y[i]] for i in range(len(x))])
     cos = sum(res[:, 0]) / (np.sqrt(sum(res[:, 1])) * np.sqrt(sum(res[:, 2])))
+    return 0.5 * cos + 0.5 if norm else cos
+    # method 1
+    
 
     # method 2
     # cos = bit_product_sum(x, y) / (np.sqrt(bit_product_sum(x, x)) * np.sqrt(bit_product_sum(y, y)))
@@ -34,7 +35,7 @@ def cosine_similarity(x, y, norm=False):
     #     square_sum_y += y[i] * y[i]
     # cos = dot_product / (np.sqrt(square_sum_x) * np.sqrt(square_sum_y))
 
-    return 0.5 * cos + 0.5 if norm else cos  # 归一化到[0, 1]区间内
+  # 归一化到[0, 1]区间内
 
 def getVectors(datum):
     try:
@@ -82,8 +83,10 @@ def score_cosSim(similarity):
     if score > 90:
         return 90
     return round(score,2)
+    # return similarity
     
 
 def final_score(Mod_datum,Input_datum):
     similarity = cosSim(Mod_datum,Input_datum)
     return 100-score_cosSim(similarity)
+    # return similarity
