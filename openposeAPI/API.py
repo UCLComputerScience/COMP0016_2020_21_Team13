@@ -102,9 +102,9 @@ def twoSkeleton(model_dir,input_dir):
     return displayHelper.combineSkele(model_datum,input_datum)
 
 
-def Scoring(model_datum,input_datum):
-    # model_datum = processImage(model_dir)
-    # input_datum = processImage(input_dir)
+def Scoring(model_dir,input_dir):
+    model_datum = processImage(model_dir)
+    input_datum = processImage(input_dir)
     return scoringHelper.final_score(model_datum,input_datum)
 
 def scoreANDskele(model_dir,input_dir):
