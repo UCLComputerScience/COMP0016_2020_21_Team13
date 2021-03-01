@@ -10,12 +10,13 @@ from sys import platform
 # alter from cosine similarity to Euclidean Distance
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
+dir_path = os.path.dirname(os.path.realpath(__file__))
 try:
     # Windows Import
     if platform == "win32":
         # Change these variables to point to the correct folder (Release/x64 etc.)
-        sys.path.append(dir_path + r'/../../openpose/build/python/openpose/Release');
-        os.environ['PATH']  = os.environ['PATH'] + ';' + dir_path + r'/../../openpose/build/x64/Release;' +  dir_path + r'/../../openpose/build/bin;'
+        sys.path.append(dir_path + r'/../openpose/build/python/openpose/Release');
+        os.environ['PATH']  = os.environ['PATH'] + ';' + dir_path + r'/../openpose/build/x64/Release;' +  dir_path + r'/../openpose/build/bin;'
         import pyopenpose as op
     else:
         # Change these variables to point to the correct folder (Release/x64 etc.)
@@ -26,6 +27,7 @@ try:
 except ImportError as e:
     print('Error: OpenPose library could not be found. Did you enable `BUILD_PYTHON` in CMake and have this Python script in the right folder?')
     raise e
+
 def _matchingPairs():
     poseModel = op.PoseModel.BODY_25
     array = op.getPosePartPairs(poseModel)
@@ -44,6 +46,7 @@ poseModel = op.PoseModel.BODY_25
 BodyPartNumber = op.getPoseBodyPartMapping(poseModel)
 PartPairs = _matchingPairs()
 poseMapIndex = op.getPoseMapIndex(poseModel)
+
 
 
 

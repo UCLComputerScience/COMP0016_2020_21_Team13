@@ -11,5 +11,4 @@ import matplotlib.pyplot as plt
 # print(Keypoints(r"D:\openpose\examples\media\IMAGE2.jpg",True))
 # img = cv2.imread(r"D:\openpose\examples\media\IMAGE2.jpg")
 # print(type(img))
-print(dir(api))
-print(api)
+api.draw_skeleton(r'D:\openpose_re\openpose\examples\media\Dance.jpg',True)

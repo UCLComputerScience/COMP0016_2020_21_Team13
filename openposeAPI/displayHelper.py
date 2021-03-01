@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from DirectPath import PartPairs
+from opInfo import PartPairs
 import os
 import time
 #Canvas helper function
@@ -110,3 +110,4 @@ def takePic():
         print("farled to grab from")
         return
     return frame
+

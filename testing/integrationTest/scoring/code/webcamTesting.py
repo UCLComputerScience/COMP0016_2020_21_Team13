@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path + r'/../../../../openposeAPI');
-from api import compareWITHmodel
+from team13api import compareWITHmodel
 from testing import dirList, displayImages, picturesToBeProcessed
 
 folderList = dirList(r'/../webcamTesting')

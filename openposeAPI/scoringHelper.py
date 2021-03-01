@@ -3,7 +3,7 @@ import numpy as np
 import math
 from numpy.core.fromnumeric import size
 from numpy.lib.function_base import average
-from DirectPath import PartPairs
+from opInfo import PartPairs
 
 def keypointsArray(datum):
     result = []

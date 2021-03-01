@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path + r'/../../../../openposeAPI');
-from api import compareWITHmodel
+from team13api import scoreANDskele
 
-def picturesToBeProcessed(dirName,limit):
+def picturesToBeProcessed(dirName):
     currentFolderName = os.path.dirname(os.path.abspath(__file__))
     imageFolderName = os.path.join(currentFolderName, dirName)
     try:
@@ -18,7 +18,7 @@ def picturesToBeProcessed(dirName,limit):
                 ]
     except Exception as e:
         print(dirName , " does not exits")
-    if len(fileNames)>limit:
+    if len(fileNames)>2:
         print("too many pictures in a single file")
         return
     return fileNames
@@ -40,15 +40,15 @@ def displayImages(images,score):
     for i in flattenedAx:
         i.axis("off")
 
-folderList = dirList('/../webcamTesting')
-fileNames = picturesToBeProcessed(folderList[0],1)
+folderList = dirList('/../data')
+fileNames = picturesToBeProcessed(folderList[0])
 score = []
 combinedSkeleton = []
 
 for f in folderList:
     # score.append(Scoring(f[0],f[1]))
-    fileNames = picturesToBeProcessed(f,2)
-    result,canvas = compareWITHmodel(fileNames[0])
+    fileNames = picturesToBeProcessed(f)
+    result,canvas = scoreANDskele(fileNames[0],fileNames[1])
     score.append(result)
     combinedSkeleton.append(canvas)
 

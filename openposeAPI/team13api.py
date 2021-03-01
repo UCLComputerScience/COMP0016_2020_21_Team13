@@ -13,8 +13,8 @@ try:
     # Windows Import
     if platform == "win32":
         # Change these variables to point to the correct folder (Release/x64 etc.)
-        sys.path.append(dir_path + r'/../../openpose/build/python/openpose/Release');
-        os.environ['PATH']  = os.environ['PATH'] + ';' + dir_path + r'/../../openpose/build/x64/Release;' +  dir_path + r'/../../openpose/build/bin;'
+        sys.path.append(dir_path + r'/../openpose/build/python/openpose/Release');
+        os.environ['PATH']  = os.environ['PATH'] + ';' + dir_path + r'/../openpose/build/x64/Release;' +  dir_path + r'/../openpose/build/bin;'
         import pyopenpose as op
     else:
         # Change these variables to point to the correct folder (Release/x64 etc.)
@@ -27,22 +27,17 @@ except ImportError as e:
     raise e
 
 params = dict()
-params["model_folder"] = "/../../openpose/models/"
+params["model_folder"] = "/../openpose/models/"
 
 def processImage(image_source):
-    # import image and model
-    # Starting OpenPose
-    print(image_source)
     opWrapper = op.WrapperPython()
     opWrapper.configure(params)
     opWrapper.start()
 
-    # Process Image
     datum = op.Datum()
     try:
-        if os.path.isfile(image_source):
-            imageToProcess = cv2.imread(image_source)
-            imageToProcess =cv2.resize(imageToProcess, (400, 400), interpolation=cv2.INTER_CUBIC)
+        imageToProcess = cv2.imread(image_source)
+        imageToProcess =cv2.resize(imageToProcess, (400, 400), interpolation=cv2.INTER_CUBIC)
     except:
         imageToProcess = image_source
         imageToProcess =cv2.resize(imageToProcess, (400, 400), interpolation=cv2.INTER_CUBIC)
@@ -93,15 +88,11 @@ def Scoring(model_dir,input_dir):
     input_datum = processImage(input_dir)
     return scoringHelper.final_score(model_datum,input_datum)
 
-def scoreANDskele(bool,model_dir,input_dir=""):
+def scoreANDskele(model_dir,input_dir):
     model_datum = processImage(model_dir)
-    if not bool:
-        input_datum = processImage(displayHelper.takePic())
-    else:
-        input_datum = processImage(input_dir)    
+    input_datum = processImage(input_dir)    
     score = scoringHelper.final_score(model_datum,input_datum)
     canvas = displayHelper.combineSkele(model_datum,input_datum)
-    displayHelper.displayImage("trials successful",canvas)
     return score,canvas
 
 def compareWITHmodel(model_dir):
@@ -110,7 +101,6 @@ def compareWITHmodel(model_dir):
     input_datum = processImage(webcamImage)    
     score = scoringHelper.final_score(model_datum,input_datum)
     canvas = displayHelper.combineSkele(model_datum,input_datum)
-    # displayHelper.displayImage("trials successful",canvas)
     return score,canvas
 
 
