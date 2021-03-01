@@ -1,5 +1,5 @@
 from displayHelper import displayImage
-import api
+import team13api
 import cv2
 import matplotlib.pyplot as plt
 # print(Scoring(r"D:\openpose\examples\media\Dance.jpg",r"D:\openpose\examples\media\Dance2.png"))
@@ -11,4 +11,4 @@ import matplotlib.pyplot as plt
 # print(Keypoints(r"D:\openpose\examples\media\IMAGE2.jpg",True))
 # img = cv2.imread(r"D:\openpose\examples\media\IMAGE2.jpg")
 # print(type(img))
-api.draw_skeleton(r'D:\openpose_re\openpose\examples\media\Dance.jpg',True)
+team13api.draw_skeleton(r'D:\danceGame\openpose\examples\media\Dance.jpg',True)

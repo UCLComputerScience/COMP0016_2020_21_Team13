@@ -15,8 +15,8 @@ try:
     # Windows Import
     if platform == "win32":
         # Change these variables to point to the correct folder (Release/x64 etc.)
-        sys.path.append(dir_path + r'/../openpose/build/python/openpose/Release');
-        os.environ['PATH']  = os.environ['PATH'] + ';' + dir_path + r'/../openpose/build/x64/Release;' +  dir_path + r'/../openpose/build/bin;'
+        sys.path.append(dir_path + r'/../../openpose/build/python/openpose/Release');
+        os.environ['PATH']  = os.environ['PATH'] + ';' + dir_path + r'/../../openpose/build/x64/Release;' +  dir_path + r'/../../openpose/build/bin;'
         import pyopenpose as op
     else:
         # Change these variables to point to the correct folder (Release/x64 etc.)
@@ -46,6 +46,7 @@ poseModel = op.PoseModel.BODY_25
 BodyPartNumber = op.getPoseBodyPartMapping(poseModel)
 PartPairs = _matchingPairs()
 poseMapIndex = op.getPoseMapIndex(poseModel)
+print(PartPairs)
 
 
 
