@@ -96,6 +96,7 @@ def scoreANDskele(model_dir,input_dir):
     return score,canvas
 
 def compareWITHmodel(model_dir):
+    print('here')
     webcamImage = displayHelper.takePic()
     model_datum = processImage(model_dir)
     input_datum = processImage(webcamImage)    
@@ -103,7 +104,8 @@ def compareWITHmodel(model_dir):
     canvas = displayHelper.combineSkele(model_datum,input_datum)
     return score,canvas
 
-
+def foo():
+    print("here")
 
 
 

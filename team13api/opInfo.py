@@ -46,7 +46,7 @@ poseModel = op.PoseModel.BODY_25
 BodyPartNumber = op.getPoseBodyPartMapping(poseModel)
 PartPairs = _matchingPairs()
 poseMapIndex = op.getPoseMapIndex(poseModel)
-print(PartPairs)
+
 
 
 
