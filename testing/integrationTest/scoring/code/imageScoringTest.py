@@ -5,7 +5,7 @@ import math
 import matplotlib.pyplot as plt
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path + r'/../../../../openposeAPI');
+sys.path.append(dir_path + r'/../../../../team13api');
 from team13api import scoreANDskele
 
 def picturesToBeProcessed(dirName):

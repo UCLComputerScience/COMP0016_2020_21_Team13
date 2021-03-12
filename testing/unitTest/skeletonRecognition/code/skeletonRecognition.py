@@ -1,27 +1,32 @@
 import os
 import sys
 import math
-# from PIL import Image
+from PIL import Image
+import cv2
 import matplotlib.pyplot as plt
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path + r'/../../../../openposeAPI');
+sys.path.append(dir_path + r'/../../../../team13api');
 import team13api
 
 def picturesToBeProcessed(dirName):
     currentFolderName = os.path.dirname(os.path.abspath(__file__))
-    imageFolderName = os.path.join(currentFolderName, dirName)
+    print(currentFolderName)
+    imagePath = currentFolderName + dirName
+    print(imagePath)
     try:
-        if os.path.isdir(imageFolderName):
-            fileNames = [f.path for f in os.scandir(imageFolderName)
+        if os.path.isdir(imagePath):
+            fileNames = [f.path for f in os.scandir(imagePath)
                     if f.is_file() and f.path.endswith(('.png','.jpg'))
                 ]
+        return fileNames
     except Exception as e:
         print(dirName , " does not exits")
-    if len(fileNames)>2:
-        print("too many pictures in a single file")
         return
-    return fileNames
+    # if len(fileNames)>2:
+    #     print("too many pictures in a single file")
+    #     return
+
 
 def dirList(directory):
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -29,28 +34,23 @@ def dirList(directory):
     folderName = [f.path for f in os.scandir(path) if f.is_dir]
     return folderName
 
-def displayImages(images,score):
+def displayImages(images):
     nImageEachRow = int(math.sqrt(len(images)) + 1)
     nImageEachCol = len(images)//nImageEachRow + 1
     fig, ax = plt.subplots(nrows=nImageEachCol, ncols=nImageEachRow)
     flattenedAx = ax.flatten()
     for i in range(0, len(images)):
         flattenedAx[i].imshow(images[i])
-        flattenedAx[i].set_title(score[i])
     for i in flattenedAx:
         i.axis("off")
 
-# print(dir(team13api))
-folderList = dirList(r'/../webcamTesting')
-score = []
-combinedSkeleton = []
+fileList = picturesToBeProcessed(r'/../data')
+imagesTobeDisplayed = []
 
-for f in folderList:
-    # score.append(Scoring(f[0],f[1]))
-    fileNames = picturesToBeProcessed(f)
-    result,canvas = team13api.compareWITHmodel(fileNames[0])
-    score.append(result)
-    combinedSkeleton.append(canvas)
+for f in fileList:
+    processedImage = team13api.DisplayImageWithSkeleton(f)
+    image = Image.fromarray(cv2.cvtColor(processedImage,cv2.COLOR_BGR2RGB))
+    imagesTobeDisplayed.append(image)
 
-displayImages(combinedSkeleton,score)
+displayImages(imagesTobeDisplayed)
 plt.show()
