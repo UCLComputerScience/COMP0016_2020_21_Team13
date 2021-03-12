@@ -101,13 +101,3 @@ def combineSkele(datumMod, datumInp):
     canvas = addingLine(canvas,keypointInp,[122,122,122])
     return canvas
 
-def takePic():
-    t = time.time()
-    cam = cv2.VideoCapture(0)
-    ret,frame = cam.read()
-    print(time.time()-t)
-    if not ret:
-        print("farled to grab from")
-        return
-    return frame
-

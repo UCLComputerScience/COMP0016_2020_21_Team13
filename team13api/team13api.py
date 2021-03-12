@@ -2,9 +2,14 @@
 import sys
 import cv2
 import os
+import numpy as np
 from sys import platform
+
+from numpy.core.defchararray import endswith
+from directoryHelper import mkdirForNpyFile, picturesToBeProcessed
 import displayHelper
 import scoringHelper
+from datumClass import datumClass
 
 
 
@@ -30,22 +35,36 @@ params = dict()
 params["model_folder"] = "/../../../openpose/models/"
 
 def processImage(image_source):
+    if (isinstance(image_source,np.ndarray)):
+        image_source = np.array(image_source)
+        imageToProcess = image_source
+        imageToProcess =cv2.resize(imageToProcess, (400, 400), interpolation=cv2.INTER_CUBIC)
+    elif image_source.endswith('.npz'):
+        if not os.path.isfile(image_source):
+            print("file does not exists, please try agian")
+            return        
+        datumclass = loadNpy(image_source)
+        return datumclass
+    elif image_source.endswith('.jpg') or image_source.endswith('.png'):
+        if not os.path.isfile(image_source):
+            print("file does not exists, please try agian")
+            return
+        imageToProcess = cv2.imread(image_source)
+        print(type(imageToProcess))
+        imageToProcess =cv2.resize(imageToProcess, (400, 400), interpolation=cv2.INTER_CUBIC)
     opWrapper = op.WrapperPython()
     opWrapper.configure(params)
     opWrapper.start()
-
     datum = op.Datum()
-    try:
-        imageToProcess = cv2.imread(image_source)
-        imageToProcess =cv2.resize(imageToProcess, (400, 400), interpolation=cv2.INTER_CUBIC)
-    except:
-        imageToProcess = image_source
-        imageToProcess =cv2.resize(imageToProcess, (400, 400), interpolation=cv2.INTER_CUBIC)
     datum.cvInputData = imageToProcess
     opWrapper.emplaceAndPop(op.VectorDatum([datum]))
+    print(type(datum))
     return datum
 
-
+def loadNpy(npy_dir):
+    npy = np.load(npy_dir)
+    datum = datumClass(npy['arr_0'],npy['arr_1'])
+    return datum
 
 
 
@@ -53,20 +72,19 @@ def processImage(image_source):
 def draw_skeleton(img_dir,bool):
     datum = processImage(img_dir)
     array = displayHelper.keypointsTuple(datum.poseKeypoints)
-    print(type(array))
     width, height = displayHelper.getSize(datum.cvOutputData.shape)
     canvas = displayHelper.init_canvas(height,width)
     if(bool == False):
         canvas = displayHelper.kponly(canvas,array)
-        displayHelper.displayImage("keypoints of the skeleton",canvas)
+        return canvas
     else:
         canvas = displayHelper.kponly(canvas,array)
         canvas = displayHelper.addingLine(canvas, array)
-        displayHelper.displayImage("keypoints of the skeleton",canvas)
+        return canvas
 
 def DisplayImageWithSkeleton(img_dir):
     datum = processImage(img_dir)
-    displayHelper.displayImage("Image with skeleton added to the input picture",datum.cvOutputData)
+    return datum.cvOutputData
 
 def Keypoints(img_dir,bool):
     datum = processImage(img_dir)
@@ -95,19 +113,20 @@ def scoreANDskele(model_dir,input_dir):
     canvas = displayHelper.combineSkele(model_datum,input_datum)
     return score,canvas
 
-def compareWITHmodel(model_dir):
-    print('here')
-    webcamImage = displayHelper.takePic()
+def compareWITHmodel(model_dir,userImage):
     model_datum = processImage(model_dir)
-    input_datum = processImage(webcamImage)    
+    input_datum = processImage(userImage)
+    # print(type(input_datum.poseKeypoints))
+    if input_datum.poseKeypoints is None:
+        print("did not detect any one in the frame")
+        canvas = None
+        score = 0
+        return score, canvas, False    
     score = scoringHelper.final_score(model_datum,input_datum)
-    canvas = displayHelper.combineSkele(model_datum,input_datum)
-    return score,canvas
-
-def foo():
-    print("here")
-
-
+    combinedSkeleton = displayHelper.combineSkele(model_datum,input_datum)
+    return score,combinedSkeleton, True
+        
+        
 
 
 

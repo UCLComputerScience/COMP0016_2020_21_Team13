@@ -37,22 +37,16 @@ def cosine_similarity(x, y, norm=False):
   # 归一化到[0, 1]区间内
 
 def getVectors(datum):
-    try:
-    # print(datum.poseKeypoints)
+    if hasattr(datum,'poseKeypoints'):
         kp = keypointsArray(datum.poseKeypoints)
-    # print(kp)
-    except Exception as error:
-        # print("Input is an array")
+    else:
         kp = datum
     vectors = []
-    # print("shape of kp",kp.shape)
     for i in range(0,len(PartPairs)):
         p1 = PartPairs[i][0]
         p2 = PartPairs[i][1]
-        # print(kp[p1],kp[p2])
         x = abs(kp[p1][0]-kp[p2][0])
         y = abs(kp[p1][1]-kp[p2][1])
-        # print(x,y)
         vectors.append([x,y])
     return np.array(vectors)
 
@@ -90,4 +84,3 @@ def score_cosSim(similarity):
 def final_score(Mod_datum,Input_datum):
     similarity = cosSim(Mod_datum,Input_datum)
     return 100-score_cosSim(similarity)
-    # return similarity

@@ -8,8 +8,6 @@ from sys import platform
 # refactoring code
 # use a different transform algorithm
 # alter from cosine similarity to Euclidean Distance
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
 dir_path = os.path.dirname(os.path.realpath(__file__))
 try:
     # Windows Import
