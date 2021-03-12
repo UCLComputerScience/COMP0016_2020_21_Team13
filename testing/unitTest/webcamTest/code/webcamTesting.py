@@ -1,6 +1,7 @@
 import os
 import sys
 import math
+import cv2
 # from PIL import Image
 import matplotlib.pyplot as plt
 
@@ -8,9 +9,19 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path + r'/../../../../team13api');
 import team13api
 
+width, height = 800, 600
+cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+
+def takeScreenshot():
+    ref, frame = cap.read()
+    return frame
+
+
 def picturesToBeProcessed(dirName):
-    currentFolderName = os.path.dirname(os.path.abspath(__file__))
-    imageFolderName = os.path.join(currentFolderName, dirName)
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    imageFolderName = dir_path + dirName
     try:
         if os.path.isdir(imageFolderName):
             fileNames = [f.path for f in os.scandir(imageFolderName)
@@ -18,9 +29,9 @@ def picturesToBeProcessed(dirName):
                 ]
     except Exception as e:
         print(dirName , " does not exits")
-    if len(fileNames)>2:
-        print("too many pictures in a single file")
-        return
+    # if len(fileNames)>2:
+    #     print("too many pictures in a single file")
+    #     return
     return fileNames
 
 def dirList(directory):
@@ -40,18 +51,23 @@ def displayImages(images,score):
     for i in flattenedAx:
         i.axis("off")
 
+
+
 # print(dir(team13api))
-folderList = dirList(r'/../data')
+folderList = picturesToBeProcessed(r'/../data')
 score = []
 combinedSkeleton = []
-
-for f in folderList:
+i=0
+while i <len(folderList):
     # score.append(Scoring(f[0],f[1]))
-    fileNames = picturesToBeProcessed(f)
-    result,canvas = team13api.compareWITHmodel(fileNames[0])
-    print(type(canvas))
+    userImage = takeScreenshot()
+    result,skeletonImage, success = team13api.compareWITHmodel(folderList[i],userImage)
+    if not success:
+        print("did not detect anyone in the picture")
+        continue
+    i+=1
     score.append(result)
-    combinedSkeleton.append(canvas)
+    combinedSkeleton.append(skeletonImage)
 
 displayImages(combinedSkeleton,score)
 plt.show()
