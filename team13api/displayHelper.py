@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
 from opInfo import PartPairs
-import os
-import time
 #Canvas helper function
 
 # create canvas
@@ -20,7 +18,6 @@ def getSize(array):
     else:
         return value2,value1
 # return keep points in tuple form
-
 def keypointsTuple(datum):
     result = []
     size = datum.shape[1]
@@ -34,30 +31,9 @@ def displayImage(string,canvas):
     cv2.imshow(string, canvas)
     cv2.waitKey(0)
 
-def picturesToBeProcessed(dirName):
-    currentFolderName = os.path.dirname(os.path.abspath(__file__))
-    imageFolderName = os.path.join(currentFolderName, dirName)
-    try:
-        if os.path.isdir(imageFolderName):
-            fileNames = [f.path for f in os.scandir(imageFolderName)
-                    if f.is_file() and f.path.endswith(('.png','.jpg'))
-                ]
-    except Exception as e:
-        print(dirName , " does not exits")
-    if len(fileNames)>2:
-        print("too many pictures in a single file")
-        return
-    return fileNames
-
-def dirList():
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    path = dir_path + r'/../testing/integrationTest/scoring/data'
-    folderName = [f.path for f in os.scandir(path) if f.is_dir]
-    return folderName
-
 # Processing Canvas
 # Drawing circles as keypoints onto a canvas
-def kponly(canvas, datum):
+def drawingKeypoints(canvas, datum):
     try:
         kp = keypointsTuple(datum.poseKeypoints)
     except Exception as error:
@@ -70,7 +46,7 @@ def kponly(canvas, datum):
     return canvas
 
 # Drawing lines between keypoints onto a canvas can be array or datum
-def addingLine(canvas,datum,color=[0,0,0]):
+def drawingLines(canvas,datum,color=[0,0,0]):
     try:
         kp = keypointsTuple(datum.poseKeypoints)
     except Exception as error:
@@ -95,9 +71,9 @@ def combineSkele(datumMod, datumInp):
     # print(result)
     width, height = getSize(datumMod.cvOutputData.shape)
     canvas = init_canvas(height,width)
-    canvas = kponly(canvas,keypointMod)
-    canvas = addingLine(canvas,keypointMod)
-    canvas = kponly(canvas,keypointInp)
-    canvas = addingLine(canvas,keypointInp,[122,122,122])
+    canvas = drawingKeypoints(canvas,keypointMod)
+    canvas = drawingLines(canvas,keypointMod)
+    canvas = drawingKeypoints(canvas,keypointInp)
+    canvas = drawingLines(canvas,keypointInp,[122,122,122])
     return canvas
 

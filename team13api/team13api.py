@@ -5,8 +5,6 @@ import os
 import numpy as np
 from sys import platform
 
-from numpy.core.defchararray import endswith
-from directoryHelper import mkdirForNpyFile, picturesToBeProcessed
 import displayHelper
 import scoringHelper
 from datumClass import datumClass
@@ -32,7 +30,8 @@ except ImportError as e:
     raise e
 
 params = dict()
-params["model_folder"] = "/../../../openpose/models/"
+# params["model_folder"] = "/../../../openpose/models/"
+params["model_folder"] = "/../../openpose/models/"
 
 def processImage(image_source):
     if (isinstance(image_source,np.ndarray)):
@@ -75,11 +74,11 @@ def draw_skeleton(img_dir,bool):
     width, height = displayHelper.getSize(datum.cvOutputData.shape)
     canvas = displayHelper.init_canvas(height,width)
     if(bool == False):
-        canvas = displayHelper.kponly(canvas,array)
+        canvas = displayHelper.drawingKeypoints(canvas,array)
         return canvas
     else:
-        canvas = displayHelper.kponly(canvas,array)
-        canvas = displayHelper.addingLine(canvas, array)
+        canvas = displayHelper.drawingKeypoints(canvas,array)
+        canvas = displayHelper.drawingLines(canvas, array)
         return canvas
 
 def DisplayImageWithSkeleton(img_dir):
@@ -101,28 +100,21 @@ def twoSkeleton(model_dir,input_dir):
 
 
 
-def Scoring(model_dir,input_dir):
+def getScore(model_dir,input_dir):
     model_datum = processImage(model_dir)
     input_datum = processImage(input_dir)
-    return scoringHelper.final_score(model_datum,input_datum)
+    return scoringHelper.similarityScore(model_datum,input_datum)
 
-def scoreANDskele(model_dir,input_dir):
+def compareWITHmodel(model_dir,inputImage):
     model_datum = processImage(model_dir)
-    input_datum = processImage(input_dir)    
-    score = scoringHelper.final_score(model_datum,input_datum)
-    canvas = displayHelper.combineSkele(model_datum,input_datum)
-    return score,canvas
-
-def compareWITHmodel(model_dir,userImage):
-    model_datum = processImage(model_dir)
-    input_datum = processImage(userImage)
+    input_datum = processImage(inputImage)
     # print(type(input_datum.poseKeypoints))
     if input_datum.poseKeypoints is None:
         print("did not detect any one in the frame")
         canvas = None
         score = 0
         return score, canvas, False    
-    score = scoringHelper.final_score(model_datum,input_datum)
+    score = scoringHelper.similarityScore(model_datum,input_datum)
     combinedSkeleton = displayHelper.combineSkele(model_datum,input_datum)
     return score,combinedSkeleton, True
         
