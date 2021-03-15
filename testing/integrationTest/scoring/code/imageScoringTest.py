@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path + r'/../../../../team13api');
-from team13api import scoreANDskele
+from team13api import compareWITHmodel
 
 def picturesToBeProcessed(dirName):
     currentFolderName = os.path.dirname(os.path.abspath(__file__))
@@ -48,7 +48,7 @@ combinedSkeleton = []
 for f in folderList:
     # score.append(Scoring(f[0],f[1]))
     fileNames = picturesToBeProcessed(f)
-    result,canvas = scoreANDskele(fileNames[0],fileNames[1])
+    result,canvas,success = compareWITHmodel(fileNames[0],fileNames[1])
     score.append(result)
     combinedSkeleton.append(canvas)
 
