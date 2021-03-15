@@ -111,8 +111,8 @@ def getUserScore(panel):
     userImage = takeScreenshot()
     model_img = preprocessedImage[current]
     if not scoreUserMove(model_img,panel,userImage):
-        updateScore(totalScoreLabel,"Did not detect Player, try agian!")
-        return
+        totalScoreLabel.configure(text = "Did not detect Player, try agian!")
+        return FALSE
 
 
 def scoreUserMove(model_dir,panel,userImage):
@@ -144,7 +144,8 @@ def action(label):
         elif clicked ==1:
             label.set("Click Me")
             print("case 1")
-            getUserScore(pictureOFcombine)
+            if not getUserScore(pictureOFcombine):
+                return
             clicked +=1
             current += 1
             updateImage(skeletonImage_photoImageType[current],current_move_panel)
@@ -153,7 +154,8 @@ def action(label):
             label.set("Last Image")
             print("case 2")
             print("current: ", current)
-            getUserScore(pictureOFcombine)
+            if not getUserScore(pictureOFcombine):
+                return
             current+=1
             updateImage(skeletonImage_photoImageType[current],current_move_panel)
             updateImage('',nextMoveLabel)
@@ -165,7 +167,8 @@ def action(label):
         else:
             label.set("Click Me")
             print("case 4")
-            getUserScore(pictureOFcombine)
+            if not getUserScore(pictureOFcombine):
+                return
             if current+1 == totalImage:
                 print("current: ", current)
                 time.sleep(5)
@@ -250,7 +253,7 @@ for j in picturesToBeDisplayed:
 
 button_label = tkinter.StringVar()
 button_label.set("Click to Start")
-Counter = 10
+Counter = 5
 tkinter.Button(rightTOPframe, textvariable=button_label,command=lambda : button_countdown(Counter,button_label)).grid(row=1)
 
 
