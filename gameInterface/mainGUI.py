@@ -1,17 +1,17 @@
+import sys, os
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dir_path + r'/../team13api');
+import team13api
+
 from typing import Counter
 from directoryRelatedAPI import *
 from tkinter import *
 import tkinter
 import time
-import sys
 from PIL import ImageTk, Image
-import cv2
 from threading import *
 
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path + r'/../team13api');
-import team13api
+import cv2
 
 # setting up webcam
 width, height = 800, 600
@@ -61,39 +61,6 @@ def button_countdown(time_to_countdown, label):
         root.after(1000, lambda: button_countdown(time_to_countdown, label))
     else:
         action(label)
-    # elif number_of_click == 0:
-    #     print("first")
-    #     label.set("click me")
-    #     updateImage(skeletonImage_photoImageType[indexOfPicture],current_move_panel)
-    #     updateImage(skeletonImage_photoImageType[1],nextMoveLabel)
-    #     number_of_click +=1
-    # elif number_of_click ==1:
-    #     label.set("click me")
-    #     print("second")
-    #     getUserScore(pictureOFcombine)
-    #     # updateScore(totalScoreLabel,userScore)
-    #     indexOfPicture +=1
-    #     number_of_click +=1
-    #     updateImage(skeletonImage_photoImageType[indexOfPicture],current_move_panel)
-    #     updateImage(skeletonImage_photoImageType[indexOfPicture+1],nextMoveLabel)
-    # elif indexOfPicture +2 < len(skeletonImage_photoImageType):
-    #     label.set("click me")
-    #     indexOfPicture = indexOfPicture+1
-    
-    #     getUserScore(pictureOFcombine)
-    #     # updateScore(totalScoreLabel,userScore)
-    #     updateImage(skeletonImage_photoImageType[indexOfPicture],current_move_panel)
-    #     updateImage(skeletonImage_photoImageType[indexOfPicture+1],nextMoveLabel)
-    #     # updateImage(photoImageType[i],pictureOFuser)
-            
-    # else:
-    #     label.set("Last Image")
-    #     getUserScore(pictureOFcombine)
-    #     getUserScore(pictureOFcombine)
-    #     updateImage(skeletonImage_photoImageType[indexOfPicture],current_move_panel)
-    #     updateImage('',nextMoveLabel)              
-    #     # updateScore(totalScoreLabel,userScore)
-
 
 
 
