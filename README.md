@@ -33,17 +33,32 @@ Note: As for now, cmake has to be installed using brew install --cask cmake
     
     cmake-gui ..
    Verify the location of installation.
+
    ![Location of Installation](docs/imagesForREADME/MacInstallImg/installLoc.png)
+
    Press configure, use Xcode as generator.
+
    ![Use Xcode as generator](docs/imagesForREADME/MacInstallImg/generator.png)
+
    Enable BUILD_PYTHON and configure again.
+
    ![Choose BUILD_PYTHON](docs/imagesForREADME/MacInstallImg/build_python.png)
+
+
+
+
    Set GPU_MODE and configure again.
+
    ![Choose CPU_ONLY](docs/imagesForREADME/MacInstallImg/GPU_MODE.png)
+
    If Configuring done appears, then press Generate.
+
    ![Press Generate](docs/imagesForREADME/MacInstallImg/generate.png)
+
    Generating done will appear below, and you can close CMake.
+
    ![Generating Done](docs/imagesForREADME/MacInstallImg/generatingDone.png)
+
 #### 4.Compilation
 
     cd build/
