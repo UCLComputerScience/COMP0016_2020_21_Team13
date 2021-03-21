@@ -19,7 +19,7 @@ Create directory at desired location, name it "danceGame"
 cd into the openpose folder:
 
     cd openpose
-![Mac Os Prerequisites](/docs/imagesForREADME/MacInstallImg/macPre.png)
+![Mac Os Prerequisites](docs/imagesForREADME/MacInstallImg/macPre.png)
 Note: As for now, cmake has to be installed using brew install --cask cmake
 ##### Build with Cmake
 
@@ -33,17 +33,17 @@ Note: As for now, cmake has to be installed using brew install --cask cmake
     
     cmake-gui ..
    Verify the location of installation.
-   ![Location of Installation](%5BImgur%5D%28https://i.imgur.com/SlFD9hc.png%29)
+   ![Location of Installation](docs/imagesForREADME/MacInstallImg/installLoc.png)
    Press configure, use Xcode as generator.
-   ![Use Xcode as generator](%5BImgur%5D%28https://i.imgur.com/VmSoA6v.png%29)
+   ![Use Xcode as generator](docs/imagesForREADME/MacInstallImg/generator.png)
    Enable BUILD_PYTHON and configure again.
-   ![Choose BUILD_PYTHON](%28https://i.imgur.com/Y8KHzBt.png%29)
+   ![Choose BUILD_PYTHON](docs/imagesForREADME/MacInstallImg/build_python.png)
    Set GPU_MODE and configure again.
-   ![Choose CPU_ONLY](https://imgur.com/Y8KHzBt)
+   ![Choose CPU_ONLY](docs/imagesForREADME/MacInstallImg/GPU_MODE.png)
    If Configuring done appears, then press Generate.
-   ![Press Generate](https://imgur.com/wctHyAG)
+   ![Press Generate](docs/imagesForREADME/MacInstallImg/generate.png)
    Generating done will appear below, and you can close CMake.
-   ![Generating Done](https://imgur.com/y2L7CuA)
+   ![Generating Done](docs/imagesForREADME/MacInstallImg/generatingDone.png)
 #### 4.Compilation
 
     cd build/
@@ -52,7 +52,7 @@ Note: As for now, cmake has to be installed using brew install --cask cmake
 
     make -j`sysctl -n hw.logicalcpu`
    Note: I faced the problem Could NOT find vecLib (missing: vecLib_INCLUDE_DIR), and I had to manually install Caffe.
-   ![Manually Install Caffe](https://imgur.com/YZAsXsG)
+   ![Manually Install Caffe](docs/imagesForREADME/MacInstallImg/caffe.png)
   #### 5.Running openpose
   Running the openpose executable:
   
@@ -68,15 +68,15 @@ Note: As for now, cmake has to be installed using brew install --cask cmake
 
     python3 01_body_from_image.py
 Note: I notice that cmake has problem finding python that are installed by brew, and running python3 01_body_from_image.py will result in an error:
-![Error When Running 01_body_from_image.py](https://imgur.com/G4adobX)
+![Error When Running 01_body_from_image.py](docs/imagesForREADME/MacInstallImg/error.png)
 Adding the following lines in CmakeLists.txt(directly under the openpose folder) will solve the problem:
 
     set(Python_ADDITIONAL_VERSIONS 3.9)
     
     find_package(PythonLibs 3 REQUIRED)
-![Add the following lines to CmakeLists.txt](https://imgur.com/H3MaCMD)
+![Add the following lines to CmakeLists.txt](docs/imagesForREADME/MacInstallImg/lines.png)
 The expected output:
-![Expected Output](https://imgur.com/9C4V8Qg)
+![Expected Output](docs/imagesForREADME/MacInstallImg/output.png)
 #### Running the game
 
     cd danceGame/COMP0016_2020_21_Team13/
@@ -85,7 +85,7 @@ The expected output:
     python3 gameInterface/mainGUI.py
    Note: make sure any program you run is from the COMP0016_2020_21_Team13 as the working directory.
    The expected output:
-   ![The expected output](https://imgur.com/Z6O7DZW)
+   ![The expected output](docs/imagesForREADME/MacInstallImg/output2.png)
 ### For Windows 10 Users
 #### 1. Clone team 13 repositories
 
@@ -104,44 +104,44 @@ CMake 3.20.0
 #####  1) Clone OpenPose repository below team 13 github repository
 
     git clone [https://github.com/CMU-Perceptual-Computing-Lab/openpose](https://github.com/CMU-Perceptual-Computing-Lab/openpose)
-![Clone Openpose Repository and team13 github repository](https://imgur.com/xd9qkrv)
+![Clone Openpose Repository and team13 github repository](docs/imagesForREADME/Win10InstallImg/preReq.png)
 ##### 2) Prerequisites
 [Openpose Official Prerequisites](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation/1_prerequisites.md)
 [Install CMake GUI 3.20.0](https://cmake.org/download/)
-![Download All Models that are Circled](https://imgur.com/wiM4yaP)
+![Download All Models that are Circled](docs/imagesForREADME/Win10InstallImg/caffe.png)
 Clone pybind11 in the openpose/3rdparty directory mentioned above.
 
     cd openpose/3rdparty
     git clone https://github.com/pybind/pybind11
 ##### 3) Cmake Configuration
-![Verify the location of installation.](https://imgur.com/davRtA5)
+![Verify the location of installation.](docs/imagesForREADME/Win10InstallImg/cmakePath.png)
 Press configure, use Visual Studio 16 2019 as generator.
-![Correct Settings](https://imgur.com/q8oKEp3)
+![Correct Settings](docs/imagesForREADME/Win10InstallImg/VSsetting.png)
 Click on build python and cpu only for cpu mode:
-![BUILD_PYTHON](https://imgur.com/fA4cP46)
-![GPU_MODE](https://imgur.com/BqWUCNd)
+![BUILD_PYTHON](docs/imagesForREADME/Win10InstallImg/buildPython.png)
+![GPU_MODE](docs/imagesForREADME/Win10InstallImg/CPU_MODE.png)
 Press "Configure" and then "Generate"
 #### 3. Run Openpose
 Check OpenPose was properly installed by running any demo example: 01_body_from_image.py.
 
 Open terminal, navigate to the path tutorial_api_python and then run 01_body_from_image.py. (or run it through visual studio code)
-![CMD commands](https://imgur.com/P76teCe)
+![CMD commands](docs/imagesForREADME/Win10InstallImg/commandLineCommand.png)
 If openpose is properly installed, the following picture will pop out.
-![Openpose Results](https://imgur.com/qt7xxP6)
+![Openpose Results](docs/imagesForREADME/Win10InstallImg/output.png)
 #### 4. Run the Game
 
     cd danceGame/COMP0016_2020_21_Team13/
     
     python3 gameInterface/mainGUI.py
 Expected Output:
-![Graphical User Interface](https://imgur.com/mFG3WWl)
+![Graphical User Interface](docs/imagesForREADME/Win10InstallImg/output2.png)
 
 ## User Maunal
 ### gameInterface folder
 Go to danceGame\COMP0016_2020_21_Team13\gameInterface, users can run the game by double-click the file `mainGUI.py`. Expected output:
-![Graphical User Interface](https://imgur.com/mFG3WWl)
+![Graphical User Interface](docs/imagesForREADME/gameInterface/startingStage.png)
 Start the game by clicking the button "click to start"
-![Game Interface and its Components](https://imgur.com/wRjciy7)
+![Game Interface and its Components](docs/imagesForREADME/gameInterface/guiDetail.png)
 ### Testing folder
 
 1. IntegrationTest\scoring. Code folder holds `imageScoringTest.py` which process a list of images and output all the images with their skeleton
