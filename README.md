@@ -19,7 +19,7 @@ Create directory at desired location, name it "danceGame"
 cd into the openpose folder:
 
     cd openpose
-![Mac Os Prerequisites](https://imgur.com/xc9vGWJ)
+![Mac Os Prerequisites](/docs/imagesForREADME/MacInstallImg/macPre.png)
 Note: As for now, cmake has to be installed using brew install --cask cmake
 ##### Build with Cmake
 
@@ -154,6 +154,5 @@ Start the game by clicking the button "click to start"
 1. Input folder is where images need to be preprocessed are placed, remember to delete preprocessOutput folder before running `preprocessSkeleton.py`
 
 2. `preprocessSkeleton.py`, a program that preprocess images stored at input folder, save output preprocessed files as .npz flies, create a folder called preprocessOutput and all the .npz files are stored in the preprocessOutput folder.
-
 
 
