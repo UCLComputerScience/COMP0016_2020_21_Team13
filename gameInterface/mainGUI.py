@@ -1,17 +1,17 @@
-import sys, os
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path + r'/../team13api');
-import team13api
-
 from typing import Counter
 from directoryRelatedAPI import *
 from tkinter import *
 import tkinter
 import time
+import sys
 from PIL import ImageTk, Image
+import cv2
 from threading import *
 
-import cv2
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dir_path + r'/../team13api');
+import team13api
 
 # setting up webcam
 width, height = 800, 600
@@ -34,8 +34,8 @@ def show_frame():
     video_panel.configure(image=imgtk)
     video_panel.after(10, show_frame)
 
-# def threading():
-#     Thread(target =lambda : getUserScore(pictureOFcombine)).start() 
+def newThread(label):
+    Thread(target =lambda : openposeCalculation(label)).start() 
 
 
 def resizeImageToScale(image):
@@ -60,7 +60,7 @@ def button_countdown(time_to_countdown, label):
         label.set(time_to_countdown)
         root.after(1000, lambda: button_countdown(time_to_countdown, label))
     else:
-        action(label)
+        openposeCalculation(label)
 
 
 
@@ -80,6 +80,7 @@ def getUserScore(panel):
     if not scoreUserMove(model_img,panel,userImage):
         totalScoreLabel.configure(text = "Did not detect Player, try agian!")
         return FALSE
+    return TRUE
 
 
 def scoreUserMove(model_dir,panel,userImage):
@@ -98,7 +99,7 @@ current=0
 userScore = 0
 totalImage = len(preprocessedImage)
 clicked = 0
-def action(label):
+def openposeCalculation(label):
     global userScore, current, totalImage, clicked
     if current < totalImage:
         next = current+1
@@ -115,6 +116,7 @@ def action(label):
                 return
             clicked +=1
             current += 1
+            print(clicked , "  ",current)
             updateImage(skeletonImage_photoImageType[current],current_move_panel)
             updateImage(skeletonImage_photoImageType[next+1],nextMoveLabel)
         elif current+2 == totalImage:
