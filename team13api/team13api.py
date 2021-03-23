@@ -41,7 +41,7 @@ def processImage(image_source):
         if not os.path.isfile(image_source):
             print("file does not exists, please try agian")
             return        
-        datumclass = loadNpy(image_source)
+        datumclass = loadNpz(image_source)
         return datumclass
     elif image_source.endswith('.jpg') or image_source.endswith('.png'):
         if not os.path.isfile(image_source):
@@ -59,9 +59,9 @@ def processImage(image_source):
     print(type(datum))
     return datum
 
-def loadNpy(npy_dir):
-    npy = np.load(npy_dir)
-    datum = datumClass(npy['arr_0'],npy['arr_1'])
+def loadNpz(npz_dir):
+    npz = np.load(npz_dir)
+    datum = datumClass(npz['arr_0'],npz['arr_1'])
     return datum
 
 
