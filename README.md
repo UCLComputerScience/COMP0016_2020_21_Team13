@@ -1,5 +1,5 @@
 # Dance Game Engine
-[Arthur Murray Dance Studio](https://arthurmurray.com/)     $~~~~~~~~~~~~~~$   [Our Blog](https://medium.com/ucl-comp0016-2020-team13)
+[Arthur Murray Dance Studio](https://arthurmurray.com/)     $~~~~~~~~~~~~~~~~$   [Our Blog](https://medium.com/ucl-comp0016-2020-team13) $~~~~~~~~~~~~~~$ [Our Websit](http://students.cs.ucl.ac.uk/2020/group13/)
 
 ![Logo](docs/imagesForREADME/coverImage/uclAndArthurMuray.png)
 
@@ -13,6 +13,12 @@
     + [Legal Statement](#legal-statement)
     + [Data Privacy Consideration](#data-privacy-consideration)
     + [Credits](#credits)
+## Project Background
+### Abstract
+
+Aimed at helping inexperienced dancers to learn basic dancing moves and gain interests in dancing, we worked with Arthur Murray Dance Studio to develop a video game engine. We provide a graphical frontend that prompts users to follow the example moves shown on screen, and it gives feedback by querying the set of APIs developed by our team, which extract skeletal information from images and evaluate the similarity between the example and that of the users. We performed pose estimation with the OpenPose system developed by CMU. The similarity score between two skeletons is calculated using a heuristically-determined one-variable function with the skeletons' cosine similarity as input. Both the graphical frontend and the set of APIs are designed to be modular and extendible, providing large potential for enhancement and extension of the game itself, and to other fields where it may fit.
+
+### 
 
 ## Installation Guide
 ### Python Package Dependencies
