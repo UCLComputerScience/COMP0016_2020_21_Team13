@@ -1,5 +1,5 @@
 # Dance Game Engine
-[Arthur Murray Dance Studio](https://arthurmurray.com/)     $~~~~~~~~~~~~~~~~$   [Our Blog](https://medium.com/ucl-comp0016-2020-team13) $~~~~~~~~~~~~~~$ [Our Websit](http://students.cs.ucl.ac.uk/2020/group13/)
+[Arthur Murray Dance Studio](https://arthurmurray.com/)     ~~~~~~~~~~~~~~~~   [Our Blog](https://medium.com/ucl-comp0016-2020-team13) ~~~~~~~~~~~~~~ [Our Websit](http://students.cs.ucl.ac.uk/2020/group13/)
 
 ![Logo](docs/imagesForREADME/coverImage/uclAndArthurMuray.png)
 
