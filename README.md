@@ -1,5 +1,5 @@
 # Dance Game Engine
-[Arthur Murray Dance Studio](https://arthurmurray.com/)     ~~~~~~~~~~~~~~~~   [Our Blog](https://medium.com/ucl-comp0016-2020-team13) ~~~~~~~~~~~~~~ [Our Websit](http://students.cs.ucl.ac.uk/2020/group13/)
+[Arthur Murray Dance Studio](https://arthurmurray.com/)     ~~~~~~~~~~~~~~~~   [Our Blog](https://medium.com/ucl-comp0016-2020-team13) ~~~~~~~~~~~~~~ [Our Website](http://students.cs.ucl.ac.uk/2020/group13/)
 
 ![Logo](docs/imagesForREADME/coverImage/uclAndArthurMuray.png)
 
@@ -18,7 +18,19 @@
 
 Aimed at helping inexperienced dancers to learn basic dancing moves and gain interests in dancing, we worked with Arthur Murray Dance Studio to develop a video game engine. We provide a graphical frontend that prompts users to follow the example moves shown on screen, and it gives feedback by querying the set of APIs developed by our team, which extract skeletal information from images and evaluate the similarity between the example and that of the users. We performed pose estimation with the OpenPose system developed by CMU. The similarity score between two skeletons is calculated using a heuristically-determined one-variable function with the skeletons' cosine similarity as input. Both the graphical frontend and the set of APIs are designed to be modular and extendible, providing large potential for enhancement and extension of the game itself, and to other fields where it may fit.
 
-### 
+### Key Features
+#### Graphical User Interface
+We provide a graphical frontend that prompts users to imitate the example moves shown on the screen. The set of APIs are called under the hood of a gaming GUI, to evaluate the users' postures against the examples, giving a similarity score as output. Both the GUI and API layers serve as interfaces to users, which could be dancers or developers, depending on the context for which they like to use the system. The similarity score between two skeletons is calculated using a heuristically determined one-variable function with the skeletons' cosine similarity as input. We show the similarity of 10 sets of images. We also show the same evaluation routine embedded within the GUI.
+![Look of GUI](docs/imagesForREADME/coverImage/key1.png)
+
+#### Preprocessing Image
+
+We support a routine to preprocess images, save the skeletons locally, and set the basis to reconstruct example dance videos into cleaner, more polished, and more flexible stick-figure based forms.
+![Rountine](docs/imagesForREADME/coverImage/key2.png)
+
+#### Multi Platform
+The system is deployable across MacOS, Windows, and Linux. It only requires a PC equipped with webcams, as found in ordinary households; no other additional hardware is required.
+![Routine](docs/imagesForREADME/coverImage/key3.png)
 
 ## Installation Guide
 ### Python Package Dependencies
