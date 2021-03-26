@@ -22,7 +22,8 @@
       - [Running openpose](#running-openpose)
       - [Running the game](#running-the-game)
     + [For Windows 10 Users](#for-windows-10-users)
-      - [Clone team 13 repositories](#clone-team-13-repositories)
+      - [Create parent directory](#create-parent-directory-1)
+      - [Clone team 13 repository under danceGame directory](#clone-team-13-repository-under-dancegame-directory-1)
       - [Install OpenPose](#install-openpose)
       - [Clone OpenPose repository below team 13 github repository](#clone-openpose-repository-below-team-13-github-repository)
       - [Prerequisites](#prerequisites)
@@ -38,6 +39,7 @@
   * [Legal Issue](#legal-issue)
     + [Legal Statement](#legal-statement)
     + [Data Privacy Consideration](#data-privacy-consideration)
+    + [Software Licences](#software-licences)
     + [Credits](#credits)
 
 ## Abstract
@@ -179,9 +181,15 @@ The expected output:
 ### For Windows 10 Users
 
 
-####  Clone team 13 repositories
+####   Create parent directory
+Create directory at desired location, name it "danceGame"
 
-    git clone [https://github.com/UCLComputerScience/COMP0016_2020_21_Team13](https://github.com/UCLComputerScience/COMP0016_2020_21_Team13)
+    mkdir danceGame
+####   Clone team 13 repository under danceGame directory
+
+    cd danceGame
+
+    git clone https://github.com/UCLComputerScience/COMP0016_2020_21_Team13
 
 (parent directory path should not be too long as windows maximum path length is 256)
 ####  Install OpenPose

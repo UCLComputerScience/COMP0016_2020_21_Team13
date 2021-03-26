@@ -3,7 +3,8 @@
 - [Installation Guide For Win10](#installation-guide-for-win10)
   * [Clone team 13 repositories](#clone-team-13-repositories)
   * [Install OpenPose](#install-openpose)
-    + [Clone OpenPose repository below team 13 github repository](#clone-openpose-repository-below-team-13-github-repository)
+  * [Create parent directory](#create-parent-directory)
+  * [Clone team 13 repository under danceGame directory](#clone-team-13-repository-under-dancegame-directory)
     + [Prerequisites](#prerequisites)
     + [Cmake Configuration](#cmake-configuration)
   * [Run Openpose](#run-openpose)
@@ -23,10 +24,15 @@ Python version 3.7
 Visual Studio 2019 Community
 
 CMake 3.20.0
-###   Clone OpenPose repository below team 13 github repository
+##   Create parent directory
+Create directory at desired location, name it "danceGame"
 
-    git clone [https://github.com/CMU-Perceptual-Computing-Lab/openpose](https://github.com/CMU-Perceptual-Computing-Lab/openpose)
-![Clone Openpose Repository and team13 github repository](../imagesForREADME/Win10InstallImg/preReq.png)
+    mkdir danceGame
+##   Clone team 13 repository under danceGame directory
+
+    cd danceGame
+
+    git clone https://github.com/UCLComputerScience/COMP0016_2020_21_Team13
 
 ###  Prerequisites
 [Openpose Official Prerequisites](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation/1_prerequisites.md)
