@@ -39,7 +39,6 @@ The system is deployable across MacOS, Windows, and Linux. It only requires a PC
 
 ## Installation Guide
 ### Python Package Dependencies
-Install packages for python:
 
 Numpy, matplotlib, opencv
  

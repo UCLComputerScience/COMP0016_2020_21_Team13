@@ -25,7 +25,8 @@
       - [Create parent directory](#create-parent-directory-1)
       - [Clone team 13 repository under danceGame directory](#clone-team-13-repository-under-dancegame-directory-1)
       - [Install OpenPose](#install-openpose)
-      - [Clone OpenPose repository below team 13 github repository](#clone-openpose-repository-below-team-13-github-repository)
+      - [Tools:](#tools-)
+      - [Clone openpose repository under danceGame directory](#clone-openpose-repository-under-dancegame-directory-1)
       - [Prerequisites](#prerequisites)
       - [Cmake Configuration](#cmake-configuration)
       - [Run Openpose](#run-openpose)
@@ -41,6 +42,7 @@
     + [Data Privacy Consideration](#data-privacy-consideration)
     + [Software Licences](#software-licences)
     + [Credits](#credits)
+
 
 ## Abstract
 
@@ -62,7 +64,6 @@ The system is deployable across MacOS, Windows, and Linux. It only requires a PC
 
 ## Installation Guide
 ### Python Package Dependencies
-Install packages for python:
 
 Numpy, matplotlib, opencv
  
@@ -180,7 +181,6 @@ The expected output:
 
 ### For Windows 10 Users
 
-
 ####   Create parent directory
 Create directory at desired location, name it "danceGame"
 
@@ -192,19 +192,22 @@ Create directory at desired location, name it "danceGame"
     git clone https://github.com/UCLComputerScience/COMP0016_2020_21_Team13
 
 (parent directory path should not be too long as windows maximum path length is 256)
+
+
 ####  Install OpenPose
 [Official installation instructions:](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation/0_index.md)
-Tools:
 
-Python version 3.7
+#### Tools:
 
-Visual Studio 2019 Community
+1. Python version 3.7
 
-CMake 3.20.0
-####   Clone OpenPose repository below team 13 github repository
+2. Visual Studio 2019 Community
 
-    git clone [https://github.com/CMU-Perceptual-Computing-Lab/openpose](https://github.com/CMU-Perceptual-Computing-Lab/openpose)
-![Clone Openpose Repository and team13 github repository](docs/imagesForREADME/Win10InstallImg/preReq.png)
+3. CMake 3.20.0
+
+####  Clone openpose repository under danceGame directory
+
+    git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose
 
 ####  Prerequisites
 [Openpose Official Prerequisites](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation/1_prerequisites.md)
