@@ -1,4 +1,4 @@
-# Dance Game Engine
+﻿# Dance Game Engine
 [Arthur Murray Dance Studio](https://arthurmurray.com/)     ~~~~~~~~~~~~~~~~   [Our Blog](https://medium.com/ucl-comp0016-2020-team13) ~~~~~~~~~~~~~~ [Our Website](http://students.cs.ucl.ac.uk/2020/group13/)
 
 ![Logo](docs/imagesForREADME/coverImage/uclAndArthurMuray.png)
@@ -62,6 +62,8 @@ Numpy, matplotlib, opencv
 ### Legal Statement
 The software is an early proof of concept for development purposes and should not be used as-is in a live environment without further redevelopment and/or testing. No warranty is given and no real data or personally identifiable data should be stored. Usage and its liabilities are your own.
 
+Our software follows the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html) license
+
 ### Data Privacy Consideration
 The data we used in our system are all pictures. The pictures shown when you run the python files in openpose/examples/tutorial_api_python and stored in openpose/examples/media are downloaded when we cloned openpose github repository. Other pictures in COMP0016_2020_21_Team13/testing/integrationTesting/scoring/data are screenshoted from videos in Youtube. All of these data are used only to see if the skeleton finding and skeleton matching algorithms are working correctly. Our game runs a local copy and will not store any user data or images but only process them on runtime.
 
@@ -81,7 +83,7 @@ The other pictures of graphs on our website are drawn by ourselves.
 
 If you have any problems with the pictures please contact us.
 
-Software Licences
+### Software Licences
 This project incorporates material from the project(s) listed below.
 
 1. CMU-Perceptual-Computing-Lab/openpose (https://github.com/CMU-Perceptual-Computing-Lab/openpose)
